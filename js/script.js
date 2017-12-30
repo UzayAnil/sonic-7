@@ -1,3 +1,3 @@
-class Sonice{
-	
+class Sonic{
+
 }
