@@ -24,8 +24,12 @@ class Sonic {
             context.drawImage(this.img, ...this.runAnimArr[this.animStep], this.x, this.y, this.runAnimArr[this.animStep][2], this.runAnimArr[this.animStep][3]);
             this.animStep = (this.animStep + 1) % this.runAnimArr.length;
         }
-        if (this.state.run && this.state.jump) {
-
+        if(this.state.run && this.state.jump){
+            context.drawImage(this.img, ...this.jumpInRunAnimArr[this.animStep], this.x, this.y, this.jumpInRunAnimArr[this.animStep][2], this.jumpInRunAnimArr[this.animStep][3]);
+            this.animStep = (this.animStep + 1) % this.jumpInRunAnimArr.length; 
+        }
+        if(!this.state.run && this.state.jump){
+        	
         }
         if (!this.state.run && this.state.jump) {
 
