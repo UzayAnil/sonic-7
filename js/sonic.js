@@ -54,14 +54,20 @@ class Sonic {
                  let point1 = ground.dotArr[pointIndex];
                  let point2 = ground.dotArr[pointIndex+1];
                  let x = this.x;
-                 let y = this.y+0.31175+this.h;
-                 let dist1 = Math.sqrt(Math.pow(point1.x - x,2)+(Math.pow(point1.y - y,2))); 
-                 let dist2 = Math.sqrt(Math.pow(point2.x - x,2)+(Math.pow(point2.y - y,2))); 
-                 let distbtwpp = Math.sqrt(Math.pow(point1.x - point2.x,2)+(Math.pow(point1.y - point2.y,2))); 
-                 if(dist1+dist2-1<=distbtwpp)
+                 let y = this.y+this.h;
+                 let a = dist(new Point(x, y), point1);
+                 let b = dist(new Point(x, y), point2);
+                 let c = dist(point1, point2);
+                 let p = (a + b + c) / 2;
+                 let h = 2 * Math.sqrt(p * (p - a) * (p - b) * (p - c)) / c;
+                 if(h < 2 && this.x >= Math.min(point1.x, point2.x) && this.x <= Math.max(point1.x, point2.x))
                     return true;
                }
          }
          return false;
     }
+}
+
+function dist(p1, p2) {
+    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 }
