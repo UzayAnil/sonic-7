@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 class Sonic {
     constructor(img, x, y, w, h) {
         this.img = img;
@@ -70,3 +71,9 @@ setInterval(function () {
     sonic.draw();
 
 }, 1000 / 30);
+=======
+class Sonic{
+
+}
+[[302,54,37,37],[346,52,32,39],[386,53,32,38],[425,52,25,38]]
+>>>>>>> parent of 764e0c6... Merge branch 'master' into Sava
