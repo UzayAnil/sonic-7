@@ -9,6 +9,10 @@ class Sonic {
         this.direction = 0;
         this.state = {
             jump: false,
+<<<<<<< HEAD
+=======
+
+>>>>>>> vadim
             run: false,
         };
         this.animStep = 0;
@@ -17,18 +21,28 @@ class Sonic {
 
     draw() {
         if (!this.state.run && !this.state.jump) {
+<<<<<<< HEAD
             context.drawImage(this.img, 4, 5, this.w, this.h, this.x, this.y, this.w, this.h);
+=======
+            context.drawImage(this.img, 0, 0, this.w, this.h, this.x, this.y, this.w, this.h);
+>>>>>>> vadim
         }
         if (this.state.run && !this.state.jump) {
             context.drawImage(this.img, ...this.runAnimArr[this.animStep], this.x, this.y, this.w, this.h);
             this.animStep = (this.animStep + 1) % this.runAnimArr.length;
         }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> vadim
     }
 
     moveX() {
         this.x += this.speed * this.direction;
     }
 }
+
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
@@ -36,13 +50,18 @@ const context = canvas.getContext("2d");
 const sonicImg = new Image();
 sonicImg.src = "../sonic/images/sonic.png";
 
+<<<<<<< HEAD
 let sonic = new Sonic(sonicImg, 0, 0, 29, 39);
+=======
+let sonic = new Sonic(sonicImg, 0, 0, 37, 44);
+>>>>>>> vadim
 
 sonicImg.onload = function () {
     sonic.draw();
 };
 
 document.onkeydown = function (event) {
+<<<<<<< HEAD
     if (event.keyCode === 39) {
         sonic.state.run = true;
         sonic.direction = 1;
@@ -58,6 +77,23 @@ document.onkeyup = function (event) {
         sonic.state.run = false;
     }
 };
+=======
+    if (event.keyCode == 39) {
+        sonic.state.run = true;
+        sonic.direction = 1;
+    }
+    if (event.keyCode == 37) {
+        sonic.state.run = true;
+        sonic.direction = -1;
+    }
+}
+document.onkeyup = function (event) {
+    if (event.keyCode == 39 || event.keyCode == 37) {
+        sonic.direction = 0;
+        sonic.state.run = false;
+    }
+}
+>>>>>>> vadim
 setInterval(function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
