@@ -17,7 +17,7 @@ class Sonic{
     }
     draw(){
     	if(!this.state.run && !this.state.jump){
-             context.drawImage(this.img,0,0,this.w,this.h,this.x,this.y,this.w,this.h);
+             context.drawImage(this.img,4,5,this.w,this.h,this.x,this.y,this.w,this.h);
     	}
     	if(this.state.run && !this.state.jump){
     		 context.drawImage(this.img,...this.runAnimArr[this.animStep],this.x,this.y,this.w,this.h);
@@ -38,7 +38,7 @@ const context = canvas.getContext("2d");
 const sonicImg = new Image();
 sonicImg.src = "../sonic/images/sonic.png";
 
-let sonic = new Sonic(sonicImg,0,0,37,44);
+let sonic = new Sonic(sonicImg,0,0,29,39);
 
 sonicImg.onload = function(){
     sonic.draw();
