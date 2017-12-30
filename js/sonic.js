@@ -41,4 +41,27 @@ class Sonic {
     moveX() {
         this.x += this.speed * this.direction;
     }
+
+    moveY(){
+        if(!this.intersect([ground]))
+           this.y+=gravity;
+    }
+    intersect(groundArr){
+         for(let groundIndex = 0;groundIndex < groundArr.length; groundIndex++){
+            let ground = groundArr[groundIndex];
+            debugger;
+               for(let pointIndex = 0; pointIndex < ground.dotArr.length-1;pointIndex++){
+                 let point1 = ground.dotArr[pointIndex];
+                 let point2 = ground.dotArr[pointIndex+1];
+                 let x = this.x;
+                 let y = this.y+0.31175+this.h;
+                 let dist1 = Math.sqrt(Math.pow(point1.x - x,2)+(Math.pow(point1.y - y,2))); 
+                 let dist2 = Math.sqrt(Math.pow(point2.x - x,2)+(Math.pow(point2.y - y,2))); 
+                 let distbtwpp = Math.sqrt(Math.pow(point1.x - point2.x,2)+(Math.pow(point1.y - point2.y,2))); 
+                 if(dist1+dist2-1<=distbtwpp)
+                    return true;
+               }
+         }
+         return false;
+    }
 }
