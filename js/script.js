@@ -9,7 +9,6 @@ class Sonic {
         this.direction = 0;
         this.state = {
             jump: false,
-
             run: false,
         };
         this.animStep = 0;
@@ -24,18 +23,12 @@ class Sonic {
             context.drawImage(this.img, ...this.runAnimArr[this.animStep], this.x, this.y, this.w, this.h);
             this.animStep = (this.animStep + 1) % this.runAnimArr.length;
         }
-
-
     }
 
     moveX() {
         this.x += this.speed * this.direction;
     }
 }
-<<<<<<< HEAD
-[[302,54,37,37],[346,52,32,39],[386,53,32,38],[425,52,25,38]]
-=======
-
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 
@@ -73,4 +66,3 @@ setInterval(function () {
     sonic.draw();
 
 }, 1000 / 30);
->>>>>>> master
