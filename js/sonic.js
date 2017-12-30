@@ -60,7 +60,7 @@ class Sonic {
                 let x = this.x + (isLeft ? 0 : this.w);
                 let y = this.y + this.h;
 
-                let diff = 2;
+                const diff = 4; // magic number (pogreshnost`)
                 if(x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
                     && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff)
                 {
