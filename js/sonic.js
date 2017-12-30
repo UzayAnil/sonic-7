@@ -55,24 +55,21 @@ class Sonic {
                 let point1 = ground.dotArr[pointIndex];
                 let point2 = ground.dotArr[pointIndex + 1];
 
-                let isLeft = this.direction === -1;
-                let isUp = point2.y < point1.y;
-                if (isLeft)
-                    isUp = !isUp;
+                let isLeft = this.direction === -1 || this.direction === 0;
 
-
-                let x = this.x + (isLeft ? this.w : 0);
+                let x = this.x + (isLeft ? 0 : this.w);
                 let y = this.y + this.h;
 
-                let a = dist(new Point(x, y), point1);
-                let b = dist(new Point(x, y), point2);
-                let c = dist(point1, point2);
-                let p = (a + b + c) / 2;
-                let h = 2 * Math.sqrt(p * (p - a) * (p - b) * (p - c)) / c;
-
-                if (h < 2 && this.x >= Math.min(point1.x, point2.x) && this.x <= Math.max(point1.x, point2.x)) {
+                let diff = 2;
+                if(x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
+                    && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff)
+                {
+                    context.strokeRect(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
+                    this.y = ((point2.y - point1.y)*(x - point1.x))/(point2.x - point1.x) + point1.y - this.h;
                     return true;
                 }
+
+                
             }
         }
         return false;
