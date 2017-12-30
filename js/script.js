@@ -1,1 +1,3 @@
-alert('not hello');
+class Sonice{
+	
+}
