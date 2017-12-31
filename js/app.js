@@ -6,7 +6,7 @@ const sonicImg = new Image();
 sonicImg.src = "../sonic/images/sonic.png";
 
 let sonic = new Sonic(sonicImg, 0, 0, 29, 39);
-let ground = new Ground([[0, 50], [100, 100], [150, 100], [200, 50], [255, 50], [250, 100]]);
+let ground = new Ground([[0, 150]/*, [100, 100], [150, 100], [200, 50], [255, 50], */,[250, 150]]);
 
 const gravity = 5;
 
