@@ -90,6 +90,7 @@ class Sonic {
                     break;
             }
 <<<<<<< HEAD
+<<<<<<< HEAD
         }*/
 =======
                 let whichFoot = point1.y < point2.y;
@@ -111,6 +112,9 @@ class Sonic {
             this.y += gravity - this.gravityDisable;
         }
 >>>>>>> parent of e2a9537... Optimizations
+=======
+        }
+>>>>>>> parent of 15a9905... Fail
 =======
         }
 >>>>>>> parent of 15a9905... Fail
