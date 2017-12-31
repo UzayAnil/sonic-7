@@ -15,9 +15,11 @@ document.onkeydown = function (event) {
 
 document.onkeypress = function (event) {
     if (event.keyCode === 32) {
-        sonic.animStep = 0;
-        sonic.state.jump = true;
-        sonic.jump();
+        if (sonic.gravityDisable === 0) {
+            sonic.animStep = 0;
+            sonic.jump();
+            sonic.state.jump = true;
+        }
     }
 };
 
