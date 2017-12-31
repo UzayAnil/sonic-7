@@ -71,7 +71,7 @@ class Sonic {
     }
 
     moveY() {
-        if (!this.state.jump && !this.isIntersecting([ground])) {
+        if (!this.state.jump && !this.isIntersecting(grounds)) {
             this.y += gravity - this.gravityDisable;
         }
         if(this.gravityDisable > 0)
