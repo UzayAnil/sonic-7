@@ -52,12 +52,13 @@ class Sonic {
     }
 
     moveY(groundArr = grounds) {
-        let isIntersect = this.isIntersecting(grounds);
+        let isIntersect = this.isIntersecting(groundArr);
+        // Sonic fall until he intersetc with ground
         if (!this.state.jump && !isIntersect) {
             this.y += gravity - this.gravityDisable;
-        }
-        else if (isIntersect && !this.state.jump) {
-            // Sonic fall until he intersetc with ground
+        }/*
+        else if (!this.state.jump && isIntersect) {
+            // Correct Sonic position
             const diff = 1; // magic const (pogreshnost')
             for (let groundIndex = 0; groundIndex < groundArr.length; groundIndex++) {
                 let ground = groundArr[groundIndex];
@@ -78,11 +79,10 @@ class Sonic {
                         break;
                     }
                 }
-
                 if (isEnd)
                     break;
             }
-        }
+        }*/
         if (this.gravityDisable > 0)
             this.gravityDisable--;
     }
@@ -110,7 +110,7 @@ class Sonic {
                 let p = (a + b + c) / 2;
                 let h = 2 * Math.sqrt(p * (p - a) * (p - b) * (p - c)) / c;
 
-                if (h < 5 && this.x >= Math.min(point1.x, point2.x) && this.x <= Math.max(point1.x, point2.x)) {
+                if (h < 3 && this.x >= Math.min(point1.x, point2.x) && this.x <= Math.max(point1.x, point2.x)) {
                     return true;
                 }
             }
