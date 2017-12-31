@@ -16,11 +16,11 @@ const gravity = 5;
 setInterval(function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let gr of grounds)
-        gr.draw();
+    for (let i = 0; i < grounds.length; i++)
+        grounds[i].draw();
 
-    sonic.moveX(grounds);
-    sonic.moveY();
+    sonic.moveX();
+    sonic.moveY(grounds);
 
     sonic.draw();
 }, 1000 / 30);
