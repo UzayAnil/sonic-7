@@ -56,8 +56,9 @@ class Sonic {
             for (let pointIndex = 0; pointIndex < ground.dotArr.length - 1; pointIndex++) {
                 let point1 = ground.dotArr[pointIndex];
                 let point2 = ground.dotArr[pointIndex + 1];
-
-<<<<<<< HEAD
+            }
+        }
+    }
     moveY(groundArr = grounds) {
         let isIntersect = this.isIntersecting(grounds);
         if (!this.state.jump && !isIntersect) {
@@ -89,10 +90,7 @@ class Sonic {
                 if (isEnd)
                     break;
             }
-<<<<<<< HEAD
-<<<<<<< HEAD
-        }*/
-=======
+        }
                 let whichFoot = point1.y < point2.y;
                 let x = this.x + (whichFoot ? 6 : this.w);
                 let y = this.y + this.h;
@@ -104,20 +102,15 @@ class Sonic {
                 }
 
             }
-        }
+
     }
 
     moveY() {
         if (!this.state.jump && !this.isIntersecting(grounds)) {
             this.y += gravity - this.gravityDisable;
         }
->>>>>>> parent of e2a9537... Optimizations
-=======
-        }
->>>>>>> parent of 15a9905... Fail
-=======
-        }
->>>>>>> parent of 15a9905... Fail
+
+
         if (this.gravityDisable > 0)
             this.gravityDisable--;
     }
