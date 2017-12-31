@@ -48,6 +48,7 @@ class Sonic {
     }
 
     isIntersecting(groundArr) {
+        const diff = 1; // magic const (pogreshnost')
         for (let groundIndex = 0; groundIndex < groundArr.length; groundIndex++) {
             let ground = groundArr[groundIndex];
 
@@ -55,12 +56,9 @@ class Sonic {
                 let point1 = ground.dotArr[pointIndex];
                 let point2 = ground.dotArr[pointIndex + 1];
 
-                let isLeft = this.direction === -1 || this.direction === 0;
-
-                let x = this.x + (isLeft ? 0 : this.w);
+                let whichFoot = point1.y < point2.y;
+                let x = this.x + (whichFoot ? 6 : this.w);
                 let y = this.y + this.h;
-
-                const diff = 4; // magic number (pogreshnost`)
                 if(x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
                     && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff)
                 {
