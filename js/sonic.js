@@ -45,12 +45,19 @@ class Sonic {
 
     }
 
-    moveX() {
+    moveX(groundArr = [ground]) {
         this.x += this.speed * this.direction;
 
+        // Sonic fall until he intersetc with ground
+        const diff = 1; // magic const (pogreshnost')
+        for (let groundIndex = 0; groundIndex < groundArr.length; groundIndex++) {
+            let ground = groundArr[groundIndex];
 
-    }
+            for (let pointIndex = 0; pointIndex < ground.dotArr.length - 1; pointIndex++) {
+                let point1 = ground.dotArr[pointIndex];
+                let point2 = ground.dotArr[pointIndex + 1];
 
+<<<<<<< HEAD
     moveY(groundArr = grounds) {
         let isIntersect = this.isIntersecting(groundArr);
         // Sonic fall until he intersetc with ground
@@ -83,6 +90,26 @@ class Sonic {
                     break;
             }
         }*/
+=======
+                let whichFoot = point1.y < point2.y;
+                let x = this.x + (whichFoot ? 6 : this.w);
+                let y = this.y + this.h;
+                if (x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
+                    && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff) {
+                    // context.strokeRect(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
+                    this.y = ((point2.y - point1.y) * (x - point1.x)) / (point2.x - point1.x) + point1.y - this.h;
+                    return;
+                }
+
+            }
+        }
+    }
+
+    moveY() {
+        if (!this.state.jump && !this.isIntersecting(grounds)) {
+            this.y += gravity - this.gravityDisable;
+        }
+>>>>>>> parent of e2a9537... Optimizations
         if (this.gravityDisable > 0)
             this.gravityDisable--;
     }
