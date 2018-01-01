@@ -21,22 +21,22 @@ class Sonic {
 
     draw() {
         if (!this.state.run && !this.state.jump) {
-            context.drawImage(this.img, 4, 5, this.w, this.h, this.x, this.y, this.w, this.h);
+            context.drawImage(this.img, 4, 5, this.w, this.h, this.x - camera.x, this.y - camera.y, this.w, this.h);
         }
         if (this.state.run && !this.state.jump) {
             if (this.direction === 1)
-                context.drawImage(this.img, ...this.runAnimArr[this.animStep], this.x, this.y, this.runAnimArr[this.animStep][2], this.runAnimArr[this.animStep][3]);
+                context.drawImage(this.img, ...this.runAnimArr[this.animStep], this.x - camera.x, this.y - camera.y, this.runAnimArr[this.animStep][2], this.runAnimArr[this.animStep][3]);
             else
-                context.drawImage(this.img, ...this.runAnimReverseArr[this.animStep], this.x, this.y, this.runAnimReverseArr[this.animStep][2], this.runAnimReverseArr[this.animStep][3]);
+                context.drawImage(this.img, ...this.runAnimReverseArr[this.animStep], this.x - camera.x, this.y - camera.y, this.runAnimReverseArr[this.animStep][2], this.runAnimReverseArr[this.animStep][3]);
 
             this.animStep = (this.animStep + 1) % this.runAnimArr.length;
         }
         if (this.state.run && this.state.jump) {
-            context.drawImage(this.img, ...this.jumpInRunAnimArr[this.animStep], this.x, this.y, this.jumpInRunAnimArr[this.animStep][2], this.jumpInRunAnimArr[this.animStep][3]);
+            context.drawImage(this.img, ...this.jumpInRunAnimArr[this.animStep], this.x - camera.x, this.y - camera.y, this.jumpInRunAnimArr[this.animStep][2], this.jumpInRunAnimArr[this.animStep][3]);
             this.animStep = (this.animStep + 1) % this.jumpInRunAnimArr.length;
         }
         if (!this.state.run && this.state.jump) {
-            context.drawImage(this.img, 4, 5, this.w, this.h, this.x, this.y, this.w, this.h);
+            context.drawImage(this.img, 4, 5, this.w, this.h, this.x - camera.x, this.y - camera.y, this.w, this.h);
         }
 
 
@@ -63,8 +63,7 @@ class Sonic {
                 let differency = ((point2.y - point1.y) * (x - point1.x)) / (point2.x - point1.x) + point1.y - this.h;
                 if (x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
                     && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff
-                    && !this.state.jump
-                    ) {
+                    && !this.state.jump) {
                     // context.strokeRect(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
                     this.y = differency;
                     return;
