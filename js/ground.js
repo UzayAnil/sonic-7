@@ -6,9 +6,10 @@ class Ground {
     }
 
     draw() {
-        context.moveTo(this.dotArr[0].x, this.dotArr[0].y);
+        context.beginPath();
+        context.moveTo(this.dotArr[0].x - camera.x, this.dotArr[0].y - camera.y);
         for (let i = 1; i < this.dotArr.length; i++) {
-            context.lineTo(this.dotArr[i].x, this.dotArr[i].y);
+            context.lineTo(this.dotArr[i].x - camera.x, this.dotArr[i].y - camera.y);
         }
         context.stroke();
 

@@ -11,17 +11,29 @@ let ground = new Ground([[30, 50], [30, 150], [100, 100], [150, 100], [200, 50],
 
 let grounds = [ground/*, ground2, ground3*/];
 
+let camera = {
+	x : 0,
+	y : 0,
+	move : function(x, y) {
+		this.x = x - 350;
+		this.y = y - 350;
+	}
+};
+
 const gravity = 5;
 
 setInterval(function () {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    for (let gr of grounds)
-        gr.draw();
+    
 
     if(sonic.state.run)
         sonic.moveX(grounds);
     sonic.moveY();
 
+    camera.move(sonic.x + sonic.w / 2, sonic.y + sonic.h / 2);
+
+	for (let gr of grounds)
+        gr.draw();
     sonic.draw();
 }, 1000 / 30);
