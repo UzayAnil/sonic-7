@@ -15,7 +15,7 @@ document.onkeydown = function (event) {
 
 document.onkeypress = function (event) {
     if (event.keyCode === 32) {
-        if (sonic.gravityDisable === 0) {
+        if (!sonic.state.jump) {
             sonic.animStep = 0;
             sonic.jump();
             sonic.state.jump = true;
@@ -27,8 +27,5 @@ document.onkeyup = function (event) {
     if (event.keyCode === 39 || event.keyCode === 37) {
         sonic.direction = 0;
         sonic.state.run = false;
-    }
-    if (event.keyCode === 32) {
-        sonic.state.jump = false;
     }
 };
