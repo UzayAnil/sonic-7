@@ -56,63 +56,10 @@ class Sonic {
             }
         }
     }
-    moveY(groundArr = grounds) {
-        let isIntersect = this.isIntersecting(grounds);
-        if (!this.state.jump && !isIntersect) {
-            this.y += gravity - this.gravityDisable;
-        }
-        else if (isIntersect && !this.state.jump) {
-            // Sonic fall until he intersetc with ground
-            const diff = 1; // magic const (pogreshnost')
-            for (let groundIndex = 0; groundIndex < groundArr.length; groundIndex++) {
-                let ground = groundArr[groundIndex];
-                let isEnd = false;
 
-                for (let pointIndex = 0; pointIndex < ground.dotArr.length - 1; pointIndex++) {
-                    let point1 = ground.dotArr[pointIndex];
-                    let point2 = ground.dotArr[pointIndex + 1];
-
-                    let whichFoot = point1.y < point2.y;
-                    let x = this.x + (whichFoot ? 6 : this.w);
-                    let y = this.y + this.h;
-                    if (x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
-                        && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff) {
-                        // context.strokeRect(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
-                        this.y = ((point2.y - point1.y) * (x - point1.x)) / (point2.x - point1.x) + point1.y - this.h;
-                        isEnd = true;
-                        break;
-                    }
-                }
-
-<<<<<<< HEAD
-                if (isEnd)
-                    break;
-            }
-        }
-=======
-                if(point1.x == point2.x)
-                    continue;
-
->>>>>>> Arm
-                let whichFoot = point1.y < point2.y;
-                let x = this.x + (whichFoot ? 6 : this.w);
-                let y = this.y + this.h;
-                let differency = ((point2.y - point1.y) * (x - point1.x)) / (point2.x - point1.x) + point1.y - this.h;
-                if (x >= Math.min(point1.x, point2.x) - diff && x <= Math.max(point1.x, point2.x) + diff
-                    && y >= Math.min(point1.y, point2.y) - diff && y <= Math.max(point1.y, point2.y) + diff
-                    && !this.state.jump
-                    ) {
-                    // context.strokeRect(point1.x, point1.y, point2.x - point1.x, point2.y - point1.y);
-                    this.y = differency;
-                    return;
-                }
-
-            }
-
-    }
 
     moveY() {
-        if(this.state.jump && this.isIntersecting(grounds))
+        if (this.state.jump && this.isIntersecting(grounds))
             this.state.jump = false;
         if (!this.isIntersecting(grounds)) {
             this.y += gravity - this.gravityDisable;
@@ -140,12 +87,11 @@ class Sonic {
                 let x2 = this.x + this.w;
                 let y = this.y + this.h;
 
-                if(y < Math.min(point1.y, point2.y) || y > Math.max(point1.y, point2.y) || x2 < Math.min(point1.x, point2.x) || x1 > Math.max(point1.x, point2.x))
+                if (y < Math.min(point1.y, point2.y) || y > Math.max(point1.y, point2.y) || x2 < Math.min(point1.x, point2.x) || x1 > Math.max(point1.x, point2.x))
                     continue;
-                if(point1.x == point2.x)
+                if (point1.x == point2.x)
                     continue;
 
-                
 
                 let line1 = [new Point(x1, y + gravity), new Point(x1, Math.max(point1.y, point2.y))];
                 let line2 = [new Point(x2, y + gravity), new Point(x2, Math.max(point1.y, point2.y))];
@@ -161,7 +107,7 @@ class Sonic {
                 let p1 = Sonic.intersectionOfLines(...line1, point1, point2);
                 let p2 = Sonic.intersectionOfLines(...line2, point1, point2);
 
-                if((p1 || p2) && (!p1 || !p2) || point1.y == point2.y) 
+                if ((p1 || p2) && (!p1 || !p2) || point1.y == point2.y)
                     return true;
             }
         }
@@ -173,14 +119,14 @@ class Sonic {
     }
 
     static intersectionOfLines(l1b, l1e, l2b, l2e) {
-            let t = (l2b.x * (l2e.y - l2b.y) + l2b.y * (l2b.x - l2e.x) - l1b.x * (l2e.y - l2b.y) + l1b.y * (l2e.x - l2b.x)) 
-                / ((l1e.x - l1b.x) * (l2e.y - l2b.y) - (l1e.y - l1b.y) * (l2e.x - l2b.x));
-            let x = t * (l1e.x - l1b.x) + l1b.x;
-            let y = t * (l1e.y - l1b.y) + l1b.y;
-            if(x >= Math.min(l1b.x, l1e.x) && x <= Math.max(l1b.x, l1e.x) &&
-                y >= Math.min(l1b.y, l1e.y) && y <= Math.max(l1b.y, l1e.y) &&
-                x >= Math.min(l2b.x, l2e.x) && x <= Math.max(l2b.x, l2e.x) &&
-                y >= Math.min(l2b.y, l2e.y) && y <= Math.max(l2b.y, l2e.y))
-                return new Point(x, y);
-        }
+        let t = (l2b.x * (l2e.y - l2b.y) + l2b.y * (l2b.x - l2e.x) - l1b.x * (l2e.y - l2b.y) + l1b.y * (l2e.x - l2b.x))
+            / ((l1e.x - l1b.x) * (l2e.y - l2b.y) - (l1e.y - l1b.y) * (l2e.x - l2b.x));
+        let x = t * (l1e.x - l1b.x) + l1b.x;
+        let y = t * (l1e.y - l1b.y) + l1b.y;
+        if (x >= Math.min(l1b.x, l1e.x) && x <= Math.max(l1b.x, l1e.x) &&
+            y >= Math.min(l1b.y, l1e.y) && y <= Math.max(l1b.y, l1e.y) &&
+            x >= Math.min(l2b.x, l2e.x) && x <= Math.max(l2b.x, l2e.x) &&
+            y >= Math.min(l2b.y, l2e.y) && y <= Math.max(l2b.y, l2e.y))
+            return new Point(x, y);
+    }
 }
