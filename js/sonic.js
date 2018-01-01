@@ -23,7 +23,7 @@ class Sonic {
         if (!this.state.run && !this.state.jump) {
             context.drawImage(this.img, 4, 5, this.w, this.h, this.x, this.y, this.w, this.h);
         }
-        if (this.state.run && !this.state.jump) {
+        else if (this.state.run && !this.state.jump) {
             if (this.direction === 1)
                 context.drawImage(this.img, ...this.runAnimArr[this.animStep], this.x, this.y, this.runAnimArr[this.animStep][2], this.runAnimArr[this.animStep][3]);
             else
@@ -31,11 +31,11 @@ class Sonic {
 
             this.animStep = (this.animStep + 1) % this.runAnimArr.length;
         }
-        if (this.state.run && this.state.jump) {
+        else if (this.state.run && this.state.jump) {
             context.drawImage(this.img, ...this.jumpInRunAnimArr[this.animStep], this.x, this.y, this.jumpInRunAnimArr[this.animStep][2], this.jumpInRunAnimArr[this.animStep][3]);
             this.animStep = (this.animStep + 1) % this.jumpInRunAnimArr.length;
         }
-        if (!this.state.run && this.state.jump) {
+        else if (!this.state.run && this.state.jump) {
             context.drawImage(this.img, 4, 5, this.w, this.h, this.x, this.y, this.w, this.h);
         }
 
