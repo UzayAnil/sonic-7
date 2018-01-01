@@ -48,7 +48,6 @@ class Sonic {
     moveX(groundArr = [ground]) {
         this.x += this.speed * this.direction;
 
-        // Sonic fall until he intersetc with ground
         const diff = 1; // magic const (pogreshnost')
         for (let groundIndex = 0; groundIndex < groundArr.length; groundIndex++) {
             let ground = groundArr[groundIndex];
@@ -85,9 +84,13 @@ class Sonic {
 >>>>>>> parent of 0a62157... Smth in falling
             this.y += gravity - this.gravityDisable;
         }
+<<<<<<< HEAD
 
 
         if (this.gravityDisable > 0)
+=======
+        if(this.gravityDisable > 0)
+>>>>>>> parent of f4ce22a... nothing new
             this.gravityDisable--;
     }
 
